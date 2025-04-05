@@ -3,6 +3,11 @@ require 'ffmpegavcc/classes/curl_handler.php';
 require 'ffmpegavcc/util.php';
 
 use \filter_ffmpegavcc\util\Utility;
+
+# relative path to the test file
+$conversionfile = "data/file_example_OGG_1MB.ogg";
+
+
 /* Array to store occuring errors during assertions */
 
 $errors = array();
@@ -59,9 +64,8 @@ $base_url = "http://localhost:3000";
      echo "Asserting for route: " . $route . "\n";
      test_assertion($response == $expected_res);
  }
-$conversionfile = "file_example_OGG_1MB.ogg";
 if (function_exists("curl_file_create")) {
-   $conversionfile = curl_file_create("file_example_OGG_1MB.ogg");
+   $conversionfile = curl_file_create($conversionfile);
 } else {
    $conversionfile = "@$conversionfile";
 }
